@@ -1,0 +1,217 @@
+/* Container for the authentication forms */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background:rgb(27, 25, 25); /* Dark transparent background */
+  padding: 20px; /* Add padding for smaller screens */
+  box-sizing: border-box; /* Ensure padding doesn't overflow */
+}
+
+/* Styling for the form container */
+.auth-form {
+  background: rgba(255, 255, 255, 0.2); /* Light transparent form background */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow for more depth */
+  backdrop-filter: blur(10px); /* Stronger blur effect */
+  color: white;
+  max-width: 600px; /* Increased width for the form */
+  width: 90%;
+  margin: 0 20px; /* Ensures equal space on both sides */
+}
+
+/* Input field styling */
+.auth-form input {
+  display: block;
+  margin-bottom: 20px; /* Added space between inputs */
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft border for input fields */
+  width: 95%;
+  border-radius: 8px;
+  background-color: white; /* Subtle background for input */
+  color: rgba(0, 0, 0, 0.8); /* Dark text color */
+  font-size: 16px;
+}
+
+/* Button styling */
+.auth-form button {
+  padding: 12px;
+  border: none;
+  width: 100%;
+  background-color: teal;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.auth-form button:hover {
+  background-color: darkslategray;
+}
+
+/* For smaller screens (mobile) */
+@media (max-width: 768px) {
+  .auth-form {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%; /* Ensure form doesn't exceed screen width */
+    margin: 0 auto; /* Center form horizontally on small screens */
+  }
+
+  .auth-form input, 
+  .auth-form button {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+/* Styling for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(27, 25, 25, 0.9);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Styling for the navigation links */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.nav-links a:hover {
+  color: teal;
+}
+
+/* Styling for login/signup buttons */
+.auth-buttons .nav-button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  background-color: teal;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.auth-buttons .nav-button:hover {
+  background-color: darkslategray;
+}
+
+
+/* Container for the Create Exercise form */
+.container {
+  background-color: rgb(27, 25, 25); /* Dark background */
+  color: white; /* White text for the form */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+/* Styling for the form labels */
+.container label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white text */
+}
+
+/* Input field styling */
+.container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft border for input fields */
+  border-radius: 8px;
+  background-color: white; /* White background for inputs */
+  color: rgba(0, 0, 0, 0.8); /* Dark text color */
+  font-size: 16px;
+}
+
+/* Button styling */
+.container button {
+  width: 105%;
+  padding: 12px;
+  background-color: teal; /* Teal button */
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container button:hover {
+  background-color: darkslategray; /* Darker color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .container label, 
+  .container input, 
+  .container button {
+    font-size: 14px;
+  }
+}
+.create-exercise-container {
+  background-color: rgb(27, 25, 25);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 50px auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.create-exercise-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: teal;
+}
+
+.create-exercise-container .form-group {
+  margin-bottom: 20px;
+}
+
+.create-exercise-container .form-group label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.create-exercise-container .form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.create-exercise-container .btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: teal;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-exercise-container .btn-primary:hover {
+  background-color: darkslategray;
+}
