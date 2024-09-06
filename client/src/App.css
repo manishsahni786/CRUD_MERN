@@ -1,72 +1,90 @@
-/* Container for the authentication forms */
-.auth-container {
+/* General styling for all auth containers */
+.auth-container, .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background:rgb(27, 25, 25); /* Dark transparent background */
-  padding: 20px; /* Add padding for smaller screens */
-  box-sizing: border-box; /* Ensure padding doesn't overflow */
+  background: rgb(27, 25, 25); /* Application's dark background */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Styling for the form container */
-.auth-form {
-  background: rgba(255, 255, 255, 0.2); /* Light transparent form background */
-  padding: 30px;
+/* Form container for authentication and create exercise */
+.auth-form, .container {
+  background: rgba(27, 25, 25); /* Light transparent background */
+  padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow for more depth */
-  backdrop-filter: blur(10px); /* Stronger blur effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
   color: white;
-  max-width: 600px; /* Increased width for the form */
-  width: 90%;
-  margin: 0 20px; /* Ensures equal space on both sides */
-}
-
-/* Input field styling */
-.auth-form input {
-  display: block;
-  margin-bottom: 20px; /* Added space between inputs */
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft border for input fields */
-  width: 95%;
-  border-radius: 8px;
-  background-color: white; /* Subtle background for input */
-  color: rgba(0, 0, 0, 0.8); /* Dark text color */
-  font-size: 16px;
-}
-
-/* Button styling */
-.auth-form button {
-  padding: 12px;
-  border: none;
+  max-width: 600px;
   width: 100%;
-  background-color: teal;
-  color: white;
+  margin: 20px auto; /* Responsive centering */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border to define the form */
+  backdrop-filter: blur(5px); /* Subtle blur effect */
+}
+
+/* Shared Input Field Styling */
+.auth-form input, .container input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft border */
   border-radius: 8px;
-  cursor: pointer;
+  background-color: rgb(40, 40, 40); /* Dark input background */
+  color: rgba(255, 255, 255, 0.9); /* White text for inputs */
   font-size: 16px;
-  transition: background-color 0.3s ease; /* Smooth transition for hover */
+  outline: none;
 }
 
-.auth-form button:hover {
-  background-color: darkslategray;
+/* Input Field Focus State */
+.auth-form input:focus, .container input:focus {
+  border-color: teal; /* Highlight border on focus */
 }
 
-/* For smaller screens (mobile) */
-@media (max-width: 768px) {
-  .auth-form {
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%; /* Ensure form doesn't exceed screen width */
-    margin: 0 auto; /* Center form horizontally on small screens */
-  }
-
-  .auth-form input, 
-  .auth-form button {
-    font-size: 14px; /* Adjust font size for smaller screens */
-  }
+/* Button Styling for Auth and Create Exercise */
+.auth-form button, .container button {
+  padding: 12px;
+  width: 105%;
+  background-color: teal; /* Consistent teal button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-/* Styling for the navbar */
+
+.auth-form button:hover, .container button:hover {
+  background-color: darkslategray; /* Hover effect */
+}
+
+/* Label Styling */
+.auth-form label, .container label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white text */
+}
+
+/* Checkbox Styling */
+.auth-form input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Headings for forms */
+.auth-form h2, .container h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.auth-form p, .container p {
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.7); /* Lighter text for description */
+}
+
+/* Navbar Styling */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -78,7 +96,7 @@
   z-index: 1000;
 }
 
-/* Styling for the navigation links */
+/* Navbar links */
 .nav-links a {
   color: white;
   text-decoration: none;
@@ -90,7 +108,7 @@
   color: teal;
 }
 
-/* Styling for login/signup buttons */
+/* Navbar buttons */
 .auth-buttons .nav-button {
   padding: 10px 15px;
   margin-left: 10px;
@@ -105,20 +123,48 @@
   background-color: darkslategray;
 }
 
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .auth-form, .container {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+  }
+
+  .auth-form input, 
+  .auth-form button,
+  .container input, 
+  .container button {
+    font-size: 14px;
+  }
+}
 
 /* Container for the Create Exercise form */
-.container {
-  background-color: rgb(27, 25, 25); /* Dark background */
-  color: white; /* White text for the form */
+.create-exercise-container {
+  background-color:(27, 25, 25); /* Dark background */
+  color: rgba(255, 255, 255, 0.9); /* White text for the form */
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);  /* Box shadow for depth */
   max-width: 600px;
   margin: 40px auto;
 }
 
+.create-exercise-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Ensure the entire page or component background is dark */
+body, .create-exercise-page {
+  background-color: grey; /* Dark background */
+  color: rgba(255, 255, 255, 0.9); /* Light text */
+  min-height: 100vh; /* Ensure full page height is covered */
+  padding: 20px;
+}
+
 /* Styling for the form labels */
-.container label {
+.create-exercise-container label {
   display: block;
   margin-bottom: 10px;
   font-size: 18px;
@@ -126,19 +172,19 @@
 }
 
 /* Input field styling */
-.container input {
+.create-exercise-container input {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft border for input fields */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
   border-radius: 8px;
-  background-color: white; /* White background for inputs */
-  color: rgba(0, 0, 0, 0.8); /* Dark text color */
+  background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
+  color: white; /* White text */
   font-size: 16px;
 }
 
 /* Button styling */
-.container button {
+.create-exercise-container button {
   width: 105%;
   padding: 12px;
   background-color: teal; /* Teal button */
@@ -150,19 +196,74 @@
   transition: background-color 0.3s ease;
 }
 
-.container button:hover {
-  background-color: darkslategray; /* Darker color on hover */
+.create-exercise-container button:hover {
+  background-color: darkslategray; /* Darker button on hover */
+}
+
+/* Ensure background remains dark on the full viewport */
+.create-exercise-container,
+body {
+  background-color: rgb(27, 25, 25); /* Dark theme */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .container {
+  .create-exercise-container {
     padding: 20px;
   }
 
-  .container label, 
-  .container input, 
-  .container button {
-    font-size: 14px;
+  .create-exercise-container label, 
+  .create-exercise-container input, 
+  .create-exercise-container button {
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
 }
+.create-user-container {
+  background-color: rgba(27, 25, 25, 0.9); /* Dark background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 20px auto;
+  color: white;
+}
+
+.create-user-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: rgb(40, 40, 40);
+  color: white;
+}
+
+.btn-primary {
+  display: block;
+  width: 103.5%;
+  padding: 10px;
+  background-color: teal;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: darkslategray;
+}
+/* Styling for the input fields inside the update form */

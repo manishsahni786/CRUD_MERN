@@ -10,11 +10,15 @@ const Home = () => {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgb(27, 25, 25)',
+        color: 'white',
       }}
     >
       <Container maxWidth="sm">
-        <Typography variant="h2" component="h1" color="white" align="center">
+        <Typography variant="h2" component="h1" align="center" gutterBottom>
           Welcome to the Home Page
+        </Typography>
+        <Typography variant="h6" align="center">
+          Explore the app and create your own exercises!
         </Typography>
       </Container>
     </Box>

@@ -1,34 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate for redirection
+import { useNavigate } from 'react-router-dom';
 
 const CreateExercise = () => {
   const [username, setUsername] = useState('');
   const [description, setDescription] = useState('');
   const [duration, setDuration] = useState(0);
   const [date, setDate] = useState('');
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const newExercise = {
-      username,
-      description,
-      duration,
-      date
-    };
-
+    const newExercise = { username, description, duration, date };
+    
     try {
       await axios.post('http://localhost:5000/exercises/add', newExercise);
-      navigate('/exercises');  // Redirect to exercises list after creation
+      navigate('/exercises');
     } catch (err) {
       console.error('Error adding exercise:', err);
     }
   };
 
   return (
-    <div className="container">
+    <div className="create-exercise-container">
       <h2>Create New Exercise</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,11 +11,10 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/auth/login', { email, password });
-      alert('Login successful!');
-      navigate("/")
+      // alert('Login successful!');
       localStorage.setItem('token', response.data.token);
+      navigate('/home');
     } catch (err) {
-      console.error(err);
       alert('Login failed');
     }
   };
@@ -24,6 +23,7 @@ const Login = () => {
     <div className="auth-container">
       <form onSubmit={handleLogin} className="auth-form">
         <h2>Login</h2>
+        <p>Login to your account to continue</p>
         <input
           type="email"
           value={email}

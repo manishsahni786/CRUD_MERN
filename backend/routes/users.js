@@ -29,5 +29,19 @@ router.route('/:id').delete((req, res) => {
     .then(() => res.json('User deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+// Update user
+router.route('/update/:id').post((req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      if (!user) return res.status(404).json('User not found.');
+
+      user.username = req.body.username || user.username;
+
+      user.save()
+        .then(() => res.json('User updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;
