@@ -1,8 +1,10 @@
+// Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -11,8 +13,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/auth/login', { email, password });
-      // alert('Login successful!');
       localStorage.setItem('token', response.data.token);
+      setIsAuthenticated(true); // Update authentication state
       navigate('/home');
     } catch (err) {
       alert('Login failed');
@@ -20,7 +22,13 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+      className="auth-container"
+    >
       <form onSubmit={handleLogin} className="auth-form">
         <h2>Login</h2>
         <p>Login to your account to continue</p>
@@ -40,7 +48,7 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

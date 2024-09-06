@@ -1,6 +1,8 @@
+// Signup.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -25,7 +27,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="auth-container">
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+      className="auth-container"
+    >
       <form onSubmit={handleSignup} className="auth-form">
         <h2>Signup</h2>
         <p>Create a new account</p>
@@ -57,16 +65,15 @@ const Signup = () => {
           placeholder="Confirm Password"
           required
         />
-       <div style={{ marginBottom: '15px' }}>
-  <label style={{ display: 'flex', alignItems: 'center' }}>
-    I agree to the terms and conditions
-    <input type="checkbox" required style={{ marginLeft: '10px', marginTop: '20px', width: '18px', height: '18px' }} />
-  </label>
-</div>
-
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'flex', alignItems: 'center' }}>
+            I agree to the terms and conditions
+            <input type="checkbox" required style={{ marginLeft: '10px', marginTop: '20px', width: '18px', height: '18px' }} />
+          </label>
+        </div>
         <button type="submit">Signup</button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

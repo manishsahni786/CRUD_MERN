@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -69,7 +70,13 @@ const Users = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: 'rgb(27, 25, 25)', minHeight: '100vh', padding: '40px 0', color: 'white' }}>
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+      sx={{ backgroundColor: 'rgb(27, 25, 25)', minHeight: '100vh', padding: '40px 0', color: 'white' }}
+    >
       <Container maxWidth="md">
         <Typography variant="h3" component="h1" gutterBottom color="white">
           Users
@@ -106,7 +113,7 @@ const Users = () => {
           <Button onClick={handleSubmit}>{isUpdating ? 'Update' : 'Add'}</Button>
         </DialogActions>
       </Dialog>
-    </Box>
+    </motion.div>
   );
 };
 
