@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { createUser } from '../services/api';  // Import the API service
 
 const CreateUser = ({ onUserAdded }) => {
   const [username, setUsername] = useState('');
@@ -9,9 +9,10 @@ const CreateUser = ({ onUserAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
-      const response = await axios.post('http://localhost:5000/users/add', { username });
-      onUserAdded({ username, _id: response.data._id });
+      const newUser = await createUser({ username });  // Call the API service
+      onUserAdded({ username, _id: newUser._id });
       setUsername('');
       window.alert('User created successfully!');
       navigate('/users');
@@ -21,22 +22,13 @@ const CreateUser = ({ onUserAdded }) => {
   };
 
   return (
-    <motion.div
-      initial={{ x: '-100vw' }}
-      animate={{ x: 0 }}
-      transition={{ type: 'spring', stiffness: 120 }}
-    >
+    <motion.div initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ type: 'spring', stiffness: 120 }}>
       <div className="create-user-container">
         <h2>Create New User</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Username:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <button type="submit" className="btn btn-primary">Add User</button>
         </form>

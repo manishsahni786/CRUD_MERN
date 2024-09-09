@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { createExercise } from '../services/api';  // Import the API service
 
 const CreateExercise = () => {
   const [username, setUsername] = useState('');
@@ -12,11 +12,10 @@ const CreateExercise = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     const newExercise = { username, description, duration, date };
     
     try {
-      await axios.post('http://localhost:5000/exercises/add', newExercise);
+      await createExercise(newExercise);  // Call the API service
       navigate('/exercises');
     } catch (err) {
       console.error('Error adding exercise:', err);
@@ -24,49 +23,25 @@ const CreateExercise = () => {
   };
 
   return (
-    <motion.div
-      initial={{ x: '100vw' }}
-      animate={{ x: 0 }}
-      transition={{ type: 'spring', stiffness: 120 }}
-    >
+    <motion.div initial={{ x: '100vw' }} animate={{ x: 0 }} transition={{ type: 'spring', stiffness: 120 }}>
       <div className="create-exercise-container">
         <h2>Create New Exercise</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Username:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <div className="form-group">
             <label>Description:</label>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
+            <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} required />
           </div>
           <div className="form-group">
             <label>Duration (in minutes):</label>
-            <input
-              type="number"
-              value={duration}
-              onChange={(e) => setDuration(e.target.value)}
-              required
-            />
+            <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} required />
           </div>
           <div className="form-group">
             <label>Date:</label>
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
           </div>
           <button type="submit" className="btn btn-primary">Create Exercise</button>
         </form>

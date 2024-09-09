@@ -1,47 +1,10 @@
 const router = require('express').Router();
-let User = require('../models/user.model');
+const { getAllUsers, getUserById, createUser, deleteUser, updateUser } = require('../controllers/userController');
 
-router.route('/').get((req, res) => {
-  User.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/:id').get((req, res) => {
-  User.findById(req.params.id)
-    .then(User => res.json(User)) 
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-
-router.route('/add').post((req, res) => {
-  const username = req.body.username;
-
-  const newUser = new User({username});
-
-  newUser.save()
-    .then(() => res.json('User added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/:id').delete((req, res) => {
-  User.findByIdAndDelete(req.params.id)
-    .then(() => res.json('User deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-// Update user
-router.route('/update/:id').post((req, res) => {
-  User.findById(req.params.id)
-    .then(user => {
-      if (!user) return res.status(404).json('User not found.');
-
-      user.username = req.body.username || user.username;
-
-      user.save()
-        .then(() => res.json('User updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+router.route('/').get(getAllUsers);
+router.route('/:id').get(getUserById);
+router.route('/add').post(createUser);
+router.route('/:id').delete(deleteUser);
+router.route('/update/:id').put(updateUser);
 
 module.exports = router;

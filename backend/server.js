@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/Tracker-App';
+const uri = process.env.MONGO_URI;
 mongoose.connect(uri);
 const connection = mongoose.connection;
 connection.once('open', () => {

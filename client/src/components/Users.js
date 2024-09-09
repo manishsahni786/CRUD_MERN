@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import axios from 'axios';
 import { motion } from 'framer-motion';
+import { fetchUsers, addUser, updateUser, deleteUser } from '../services/api'; // Import the API functions
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -11,10 +11,15 @@ const Users = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/users/')
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.error('Error:', error));
+    const loadUsers = async () => {
+      try {
+        const data = await fetchUsers();
+        setUsers(data);
+      } catch (error) {
+        console.error('Error loading users:', error);
+      }
+    };
+    loadUsers();
   }, []);
 
   const handleOpenForm = (user = null) => {
@@ -42,30 +47,26 @@ const Users = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isUpdating) {
-      try {
-        await axios.put(`http://localhost:5000/users/${selectedUserId}`, formData);
+    try {
+      if (isUpdating) {
+        await updateUser(selectedUserId, formData);
         setUsers(users.map(user => (user._id === selectedUserId ? { ...user, ...formData } : user)));
-      } catch (error) {
-        console.error('Error:', error);
+      } else {
+        const newUser = await addUser(formData);
+        setUsers([...users, { ...formData, _id: newUser._id }]);
       }
-    } else {
-      try {
-        const response = await axios.post('http://localhost:5000/users/add', formData);
-        setUsers([...users, { ...formData, _id: response.data._id }]);
-      } catch (error) {
-        console.error('Error:', error);
-      }
+      handleCloseForm();
+    } catch (error) {
+      console.error('Error submitting form:', error);
     }
-    handleCloseForm();
   };
 
-  const deleteUser = async (id) => {
+  const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
+      await deleteUser(id);
       setUsers(users.filter(user => user._id !== id));
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error deleting user:', error);
     }
   };
 
@@ -87,7 +88,7 @@ const Users = () => {
               <ListItemText primary={user.username} sx={{ color: 'white' }} />
               <Box>
                 <Button sx={{ color: 'teal' }} onClick={() => handleOpenForm(user)}>Update</Button>
-                <Button sx={{ color: 'red' }} onClick={() => deleteUser(user._id)}>Delete</Button>
+                <Button sx={{ color: 'red' }} onClick={() => handleDelete(user._id)}>Delete</Button>
               </Box>
             </ListItem>
           ))}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
 /* General styling for all auth containers */
 .auth-container, .container {
   display: flex;
@@ -267,3 +269,33 @@ body {
   background-color: darkslategray;
 }
 /* Styling for the input fields inside the update form */
+/* App.css */
+/* .navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.nav-links a, .auth-buttons .nav-button {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+
+
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+} */
+
+.user-email {
+  color: teal;
+  margin-right: 10px;
+  font-family: 'Roboto Slab', Georgia, serif;/* Apply the stylish font here */
+  font-size: 16px; /* Adjust the size as needed */
+  font-weight: 700; /* Use a bold weight if desired */
+}

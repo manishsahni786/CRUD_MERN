@@ -12,13 +12,13 @@ const Exercises = () => {
     duration: 0,
     date: ''
   });
-
+ const exercise_API= process.env.REACT_APP_ALL_EXERCISES;
   useEffect(() => {
-    fetch('http://localhost:5000/exercises/')
+    fetch(exercise_API)
       .then(response => response.json())
       .then(data => setExercises(data))
       .catch(error => console.error('Error:', error));
-  }, []);
+  }, [exercise_API]);
 
   // Handle Update Button Click (open the form)
   const handleEditClick = (exercise) => {
@@ -34,7 +34,7 @@ const Exercises = () => {
   // Update exercise in the backend
   const handleUpdateExercise = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/exercises/update/${id}`, updatedExercise);
+      await axios.put(`http://localhost:5000/exercises/update/${id}`, updatedExercise);
       // Refresh exercises list after update
       const updatedExercises = await fetch('http://localhost:5000/exercises/').then(res => res.json());
       setExercises(updatedExercises);
@@ -79,11 +79,25 @@ const Exercises = () => {
                       onChange={(e) => setUpdatedExercise({ ...updatedExercise, username: e.target.value })}
                       sx={{
                         marginBottom: '10px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)', /* High contrast background */
-                        color: 'white', /* High contrast text color */
-                        border: '1px solid rgba(255, 255, 255, 0.5)', /* Lighter border */
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)', // Decreased contrast
+                        color: 'white',
+                        border: '1px solid teal', // Teal border
                         '& .MuiInputBase-input': {
-                          color: 'white' /* Ensure text color is white */
+                          color: 'white'
+                        },
+                        '& .MuiFormLabel-root': {
+                          color: 'white', // Ensure label text is white
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '& fieldset': {
+                            borderColor: 'teal', // Teal border color
+                          },
+                          '&:hover fieldset': {
+                            borderColor: 'teal', // Teal border on hover
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: 'teal', // Teal border when focused
+                          },
                         }
                       }}
                     />
@@ -95,11 +109,25 @@ const Exercises = () => {
                       onChange={(e) => setUpdatedExercise({ ...updatedExercise, description: e.target.value })}
                       sx={{
                         marginBottom: '10px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)', /* High contrast background */
-                        color: 'white', /* High contrast text color */
-                        border: '1px solid rgba(255, 255, 255, 0.5)', /* Lighter border */
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)', // Decreased contrast
+                        color: 'white',
+                        border: '1px solid teal', // Teal border
                         '& .MuiInputBase-input': {
-                          color: 'white' /* Ensure text color is white */
+                          color: 'white'
+                        },
+                        '& .MuiFormLabel-root': {
+                          color: 'white', // Ensure label text is white
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '& fieldset': {
+                            borderColor: 'teal', // Teal border color
+                          },
+                          '&:hover fieldset': {
+                            borderColor: 'teal', // Teal border on hover
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: 'teal', // Teal border when focused
+                          },
                         }
                       }}
                     />
@@ -112,11 +140,25 @@ const Exercises = () => {
                       onChange={(e) => setUpdatedExercise({ ...updatedExercise, duration: e.target.value })}
                       sx={{
                         marginBottom: '10px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)', /* High contrast background */
-                        color: 'white', /* High contrast text color */
-                        border: '1px solid rgba(255, 255, 255, 0.5)', /* Lighter border */
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)', // Decreased contrast
+                        color: 'white',
+                        border: '1px solid teal', // Teal border
                         '& .MuiInputBase-input': {
-                          color: 'white' /* Ensure text color is white */
+                          color: 'white'
+                        },
+                        '& .MuiFormLabel-root': {
+                          color: 'white', // Ensure label text is white
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '& fieldset': {
+                            borderColor: 'teal', // Teal border color
+                          },
+                          '&:hover fieldset': {
+                            borderColor: 'teal', // Teal border on hover
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: 'teal', // Teal border when focused
+                          },
                         }
                       }}
                     />
@@ -128,11 +170,25 @@ const Exercises = () => {
                       onChange={(e) => setUpdatedExercise({ ...updatedExercise, date: e.target.value })}
                       sx={{
                         marginBottom: '10px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)', /* High contrast background */
-                        color: 'white', /* High contrast text color */
-                        border: '1px solid rgba(255, 255, 255, 0.5)', /* Lighter border */
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)', // Decreased contrast
+                        color: 'white',
+                        border: '1px solid teal', // Teal border
                         '& .MuiInputBase-input': {
-                          color: 'white' /* Ensure text color is white */
+                          color: 'white'
+                        },
+                        '& .MuiFormLabel-root': {
+                          color: 'white', // Ensure label text is white
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '& fieldset': {
+                            borderColor: 'teal', // Teal border color
+                          },
+                          '&:hover fieldset': {
+                            borderColor: 'teal', // Teal border on hover
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: 'teal', // Teal border when focused
+                          },
                         }
                       }}
                     />
@@ -142,8 +198,8 @@ const Exercises = () => {
                 ) : (
                   <>
                     <ListItemText
-                      primary={`${exercise.username}: ${exercise.description}`}
-                      secondary={`${exercise.duration} minutes on ${new Date(exercise.date).toDateString()}`}
+                      primary={`${exercise.username}`}
+                      secondary={`${exercise.description} | ${exercise.duration} minutes on ${new Date(exercise.date).toDateString()}`}
                       sx={{ color: 'white' }}
                     />
                     <Box>
