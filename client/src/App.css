@@ -299,3 +299,123 @@ body {
   font-size: 16px; /* Adjust the size as needed */
   font-weight: 700; /* Use a bold weight if desired */
 }
+/* Styling for the dropdown select in CreateExercise component */
+.create-exercise-container select {
+  width: 103%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle light border */
+  border-radius: 8px;
+  background-color: rgba(40, 40, 40, 0.9); /* Dark background for dropdown */
+  color: rgba(255, 255, 255, 0.9); /* White text */
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Dropdown focus/hover state */
+.create-exercise-container select:focus,
+.create-exercise-container select:hover {
+  border-color: teal; /* Highlight with teal on focus/hover */
+}
+
+/* Dropdown options styling */
+.create-exercise-container select option {
+  background-color: rgb(40, 40, 40); /* Dark background for options */
+  color: rgba(255, 255, 255, 0.9); /* White text for options */
+  padding: 12px;
+}
+
+/* Style the dropdown arrow */
+.create-exercise-container select::-ms-expand {
+  display: none; /* Hide default dropdown arrow in Internet Explorer */
+}
+
+/* Modal Overlay to cover the whole page */
+.modal-overlay {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content Box */
+.modal-content {
+  background-color: rgba(40, 40, 40, 0.9); /* Match dark theme */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px; /* Reduce max-width */
+  width: 90%; /* Ensure responsiveness */
+  color: rgba(255, 255, 255, 0.9); /* White text */
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  backdrop-filter: blur(8px); /* Light blur effect */
+}
+
+/* Modal Message Text */
+.modal-content p {
+  font-size: 16px; /* Adjusted text size */
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.85); /* Softer white text */
+}
+
+/* Close Button */
+.modal-content button {
+  padding: 10px 18px; /* Adjust padding */
+  background-color: teal; /* Button matches your app theme */
+  color: white;
+  border: none;
+  border-radius: 6px; /* Smaller border-radius */
+  font-size: 14px; /* Adjust font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for Close Button */
+.modal-content button:hover {
+  background-color: darkslategray; /* Darker teal on hover */
+}
+
+/* Close button icon */
+.modal-content .close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 22px; /* Slightly smaller close icon */
+  color: rgba(255, 255, 255, 0.7); /* Lighter close button */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-content .close:hover {
+  color: rgba(255, 255, 255, 1); /* Brighten on hover */
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+  }
+}
+
+
+/* Mobile responsive adjustments for the dropdown */
+@media (max-width: 768px) {
+  .create-exercise-container select {
+    font-size: 14px; /* Smaller font size for mobile devices */
+  }
+}
+

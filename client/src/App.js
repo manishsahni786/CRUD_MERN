@@ -37,14 +37,16 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedEmail = localStorage.getItem('userEmail'); // Get the email from localStorage
+    if (token && storedEmail) {
       setIsAuthenticated(true);
-      // Optionally fetch user details to set the email
+      setUserEmail(storedEmail);  // Set the email from localStorage
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userEmail'); // Remove email from localStorage on logout
     setIsAuthenticated(false);
     setUserEmail('');
   };
