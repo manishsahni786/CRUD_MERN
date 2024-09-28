@@ -17,19 +17,17 @@ const pageVariants = {
   exit: { opacity: 0, y: -50 },
 };
 
-const AnimatedRoute = ({ element }) => {
-  return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={pageVariants}
-      transition={{ duration: 0.5 }}
-    >
-      {element}
-    </motion.div>
-  );
-};
+const AnimatedRoute = ({ element }) => (
+  <motion.div
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    variants={pageVariants}
+    transition={{ duration: 0.5 }}
+  >
+    {element}
+  </motion.div>
+);
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -83,6 +81,11 @@ function App() {
           <Route
             path="/home"
             element={<AnimatedRoute element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />}
+          />
+          {/* Add a fallback route to redirect to login or home based on authentication */}
+          <Route
+            path="/"
+            element={<Navigate to={isAuthenticated ? "/home" : "/login"} />}
           />
         </Routes>
       </AnimatePresence>

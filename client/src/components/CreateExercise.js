@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { createExercise, fetchUsers } from '../services/api';  // Import the API services
-import Modal from './Modal';  // Import the Modal component
+import { createExercise, fetchUsers } from '../services/api';  
+import Modal from './Modal';  
 
 const CreateExercise = () => {
   const [users, setUsers] = useState([]);
@@ -10,16 +10,15 @@ const CreateExercise = () => {
   const [description, setDescription] = useState('');
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
-  const [isModalVisible, setIsModalVisible] = useState(false);  // Modal visibility state
-  const [modalMessage, setModalMessage] = useState('');  // Modal message state
+  const [isModalVisible, setIsModalVisible] = useState(false);  
+  const [modalMessage, setModalMessage] = useState('');  
   const navigate = useNavigate();
 
-  // Fetch the list of users when the component mounts
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const usersData = await fetchUsers();  // Fetch the users from the API
-        setUsers(usersData);  // Set users in the component state
+        const usersData = await fetchUsers();  
+        setUsers(usersData);  
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -30,34 +29,37 @@ const CreateExercise = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!username || !description || !duration || !date) {
+      setModalMessage('All fields are required.');
+      setIsModalVisible(true);
+      return;
+    }
+
     const newExercise = { username, description, duration, date };
     
     try {
-      await createExercise(newExercise);  // Call the API to create a new exercise
+      await createExercise(newExercise);
 
-      // Show success modal
       setModalMessage('Exercise created successfully!');
       setIsModalVisible(true);
 
-      // Optional: Auto-hide the modal after 3 seconds
       setTimeout(() => {
         setIsModalVisible(false);
-        navigate('/exercises');  // Redirect to the exercises list after modal hides
+        navigate('/exercises');
       }, 3000);
-
     } catch (error) {
-      console.error('Error adding exercise:', error);
-      setModalMessage('Error creating exercise. Please try again.');  // Show error in modal
+      if (error.response && error.response.status === 400) {
+        setModalMessage('Invalid data provided. Please check your input.');
+      } else {
+        setModalMessage('Error creating exercise. Please try again.');
+      }
       setIsModalVisible(true);
-
-      // Auto-hide the modal after 3 seconds
       setTimeout(() => setIsModalVisible(false), 3000);
     }
   };
 
-  const closeModal = () => {
-    setIsModalVisible(false);  // Close the modal manually
-  };
+  const closeModal = () => setIsModalVisible(false);
 
   return (
     <motion.div
@@ -110,7 +112,6 @@ const CreateExercise = () => {
           <button type="submit" className="btn btn-primary">Create Exercise</button>
         </form>
 
-        {/* Modal for success or error message */}
         {isModalVisible && <Modal message={modalMessage} onClose={closeModal} />}
       </div>
     </motion.div>

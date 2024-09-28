@@ -42,7 +42,7 @@ export const signupUser = async (userData) => {
     const response = await axios.post(signup_API, userData);
     return response.data;
   } catch (error) {
-    console.error('Error signing up:', error);
+    console.error('Error signing up:', error.response ? error.response.data : error.message);
     throw error;
   }
 };
@@ -79,7 +79,7 @@ export const updateUser = async (id, formData) => {
 export const deleteUser = async (id) => {
   try {
     await axios.delete(`${user_API}/${id}`);
-  } catch (error) {
+  } catch (error) { 
     console.error('Error deleting user:', error);
     throw error;
   }

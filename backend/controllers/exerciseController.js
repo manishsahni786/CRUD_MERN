@@ -26,7 +26,7 @@ exports.createExercise = async (req, res) => {
       userId: user._id,  // Assign userId from the User document
       username: user.username, // Keep the username as well
       description,
-      duration: Number(duration),
+      duration: Number(duration),   
       date: Date.parse(date),
     });
 
@@ -83,18 +83,18 @@ exports.getUsersByExerciseDescription = async (req, res) => {
   const { description } = req.body; // Extract description from req.body
 
   try {
-    // Find all exercises with the matching description
+    
     const exercises = await Exercise.find({ description });
 
-    // If no exercises are found, return a 404 response
+   
     if (!exercises.length) {
       return res.status(404).json({ message: 'No exercises found with the given description.' });
     }
 
-    // Extract unique user IDs from the exercises
+    
     const userIds = [...new Set(exercises.map(ex => ex.userId))];
 
-    // Find the users associated with these user IDs
+   
     const users = await User.find({ _id: { $in: userIds } });
 
     // Return the list of users as a response
